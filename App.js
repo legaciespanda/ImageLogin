@@ -4,15 +4,23 @@ import React, { useState, useEffect } from "react"
 import { StyleSheet, Text, View,  BackHandler, AppRegistry  } from 'react-native';
 ;
 import { Provider as PaperProvider } from 'react-native-paper';
-import { theme } from "./src/core/Theme"
+import { theme } from "./src/config/Theme"
 import { name as appName } from './app.json';
 
 import { checkConnected } from "./src/config/InternetDetect";
-import NoInternetActivity from "./src/activity/NoInternetActivity";
 
 // Import Navigators from React Navigation
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+
+
+// Import Screens
+import SplashScreen from './src/activity/Splashscreen';
+import AccessActivity from './src/activity/AcessActivity';
+import LoginActivity from "/src/activity/LoginActivity";
+import RegisterActivity from "./src/activity/RegisterActivity"
+import NavigationComponent from './src/component/Navigation';
+import { AppStyles } from "./src/config/AppStyles";
 
 
 const Stack = createStackNavigator();
@@ -20,7 +28,13 @@ const Stack = createStackNavigator();
 const Auth = () => {
   // Stack Navigator for Login and Sign up Screen
   return (
-    <Stack.Navigator initialRouteName="LoginActiviy">
+    <Stack.Navigator initialRouteName="AccessActivity">
+      <Stack.Screen
+        name="AccessActivity"
+        component={AccessActivity}
+        options={{headerShown: false}}
+      />
+
       <Stack.Screen
         name="LoginActivity"
         component={LoginActivity}
